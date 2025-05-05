@@ -25,13 +25,13 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Exams List</h1>
+          <h1 class="m-0">Subject's List</h1>
         </div>
         <!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Exams List</li>
+            <li class="breadcrumb-item active">Subject's List</li>
           </ol>
         </div>
         <!-- /.col -->
@@ -52,7 +52,7 @@
               <!-- <h3 class="card-title">
                 DataTable with minimal features & hover style
               </h3> -->
-              <a class="btn btn-app" href="/admin/evaluators-management/create">
+              <a class="btn btn-app" href="/admin/subjects-management/create">
                 <i class="fas fa-user-plus"></i> Add
               </a>
             </div>
@@ -61,41 +61,39 @@
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
                   <tr>
-                    <th>Exam Code</th>
-                    <th>Exam Name</th>
-                    <th>Subject</th>
-                    <th>Exam Date</th>
-                    <th>Exam Last Date</th>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Departmente</th>
+                    <th>Semester</th>
                     <th>Status</th>
-                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {% for exam in exams %}
+                  {% for subject in subjects %}
                   <tr>
-                    <td>{{ exam.exam_code }}</td>
-                    <td>{{ exam.exam_name }}</td>
-                    <td>{{ exam.subject }}</td>
-                    <td>{{ exam.exam_date }}</td>
-                    <td>{{ exam.expire_date }}</td>
-                    <td>{{ 'Active' if exam.status else 'Inactive' }}</td>
-                    <td>
+                    <td>{{ subject.code }}</td>
+                    <td>{{ subject.name }}</td>
+                    <td>{{ subject.description }}</td>
+                    <td>{{ subject.department }}</td>
+                    <td>{{ subject.semester }}</td>
+                    <td>{{ 'Active' if subject.active else 'Inactive' }}</td>
+                    <!-- <td>
                       <a href="#" class="btn btn-app">
                         <i class="fas fa-edit"></i> View
                       </a>
-                    </td>
+                    </td> -->
                   </tr>
                   {% endfor %}
                 </tbody>
                 <tfoot>
                   <tr>
-                    <th>Exam Code</th>
-                    <th>Exam Name</th>
-                    <th>Subject</th>
-                    <th>Exam Date</th>
-                    <th>Exam Last Date</th>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Departmente</th>
+                    <th>Semester</th>
                     <th>Status</th>
-                    <th>Action</th>
                   </tr>
                 </tfoot>
               </table>

@@ -72,12 +72,60 @@
                     <div class="form-group">
                       <label>Email</label>
                       <input
-                        type="text"
+                        type="email"
                         class="form-control"
-                        placeholder="Enter ..."
+                        placeholder="Enter email"
                         id="email"
                         name="email"
                         value="{{ request.form.get('email', '') }}"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <!-- text input -->
+                    <div class="form-group">
+                      <label>Department</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter ..."
+                        id="department"
+                        name="department"
+                        value="{{ request.form.get('department', '') }}"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <!-- text input -->
+                    <div class="form-group">
+                      <label>Designation</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter ..."
+                        id="designation"
+                        name="designation"
+                        value="{{ request.form.get('designation', '') }}"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <!-- text input -->
+                    <div class="form-group">
+                      <label>Phone Number</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter ..."
+                        id="phone_number"
+                        name="phone_number"
+                        maxlength="10"
+                        value="{{ request.form.get('phone_number', '') }}"
+                        pattern="\d{10}"
+                        title="Please enter a valid 10-digit phone number"
                         required
                       />
                     </div>

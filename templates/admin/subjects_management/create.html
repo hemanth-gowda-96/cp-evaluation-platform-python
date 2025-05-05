@@ -22,13 +22,13 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Add New Exam</h1>
+          <h1 class="m-0">Add New Subject</h1>
         </div>
         <!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">New Exam</li>
+            <li class="breadcrumb-item active">New Subject</li>
           </ol>
         </div>
         <!-- /.col -->
@@ -46,132 +46,92 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Add New Exam</h3>
+              <h3 class="card-title">Add New Subject</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
               <form method="post">
                 <div class="row">
-                  <div class="col-6">
+                  <div class="col-4">
                     <!-- text input -->
                     <div class="form-group">
-                      <label>Exam Code</label>
+                      <label>Name</label>
                       <input
                         type="text"
                         class="form-control"
                         placeholder="Enter ..."
+                        id="name"
+                        name="name"
+                        value="{{ request.form.get('name', '') }}"
                         required
                       />
                     </div>
                   </div>
-                  <div class="col-6">
+                  <div class="col-4">
                     <!-- text input -->
                     <div class="form-group">
-                      <label>Exam Name</label>
+                      <label>Code</label>
                       <input
                         type="text"
                         class="form-control"
                         placeholder="Enter ..."
+                        id="code"
+                        name="code"
+                        value="{{ request.form.get('code', '') }}"
                         required
                       />
                     </div>
                   </div>
-                  <div class="col-6">
+                  <div class="col-4">
                     <!-- text input -->
                     <div class="form-group">
-                      <label>Exam Description</label>
+                      <label>Description</label>
                       <input
                         type="text"
                         class="form-control"
                         placeholder="Enter ..."
+                        id="description"
+                        name="description"
+                        value="{{ request.form.get('description', '') }}"
+                        required
                       />
                     </div>
                   </div>
-                  <div class="col-6">
+                  <div class="col-4">
                     <!-- text input -->
                     <div class="form-group">
-                      <label>Exam Subject</label>
+                      <label>Department</label>
                       <input
                         type="text"
                         class="form-control"
                         placeholder="Enter ..."
+                        id="department"
+                        name="department"
+                        value="{{ request.form.get('department', '') }}"
+                        required
                       />
                     </div>
                   </div>
-                  <div class="col-6">
+                  <div class="col-4">
                     <!-- text input -->
                     <div class="form-group">
-                      <label>Passing Percentage</label>
+                      <label>Semester</label>
                       <input
-                        type="number"
+                        type="text"
                         class="form-control"
                         placeholder="Enter ..."
+                        id="semester"
+                        name="semester"
+                        maxlength="1"
+                        minlength="1"
+                        pattern="\d{1}"
+                        value="{{ request.form.get('description', '') }}"
+                        title="Please enter a valid semester in digits"
+                        required
                       />
                     </div>
                   </div>
-                  <div class="col-6">
-                    <!-- text input -->
-                    <div class="form-group">
-                      <label>Exam Duration</label>
-                      <input
-                        type="number"
-                        class="form-control"
-                        placeholder="Enter ..."
-                      />
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <!-- Date -->
-                    <div class="form-group">
-                      <label>Date:</label>
-                      <div
-                        class="input-group date"
-                        id="reservationdate"
-                        data-target-input="nearest"
-                      >
-                        <input
-                          type="text"
-                          class="form-control datetimepicker-input"
-                          data-target="#reservationdate"
-                        />
-                        <div
-                          class="input-group-append"
-                          data-target="#reservationdate"
-                          data-toggle="datetimepicker"
-                        >
-                          <div class="input-group-text">
-                            <i class="fa fa-calendar"></i>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <!-- Date -->
-                    <div class="form-group">
-                      <label>Date:</label>
-                      <div
-                        class="input-group date"
-                        id="reservationdate1"
-                        data-target-input="nearest"
-                      >
-                        <input
-                          type="text"
-                          class="form-control datetimepicker-input"
-                          data-target="#reservationdate1"
-                        />
-                        <div
-                          class="input-group-append"
-                          data-target="#reservationdate1"
-                          data-toggle="datetimepicker"
-                        >
-                          <div class="input-group-text">
-                            <i class="fa fa-calendar"></i>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+
                   <div class="col-sm-6"></div>
                   <div class="col-sm-4"></div>
                   <div class="col-sm-4">

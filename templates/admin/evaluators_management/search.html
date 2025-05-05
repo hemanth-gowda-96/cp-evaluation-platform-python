@@ -65,24 +65,29 @@
                     <th>Email</th>
                     <th>Role</th>
                     <th>Status</th>
+                    <th>Department</th>
+                    <th>Designation</th>
+                    <th>Phone</th>
                     <th>Created Date</th>
-                    <th>Action</th>
+                    <!-- <th>Action</th> -->
                   </tr>
                 </thead>
                 <tbody>
-                  {% for exam in exams %}
+                  {% for evaluator in evaluators %}
                   <tr>
-                    <td>{{ exam.exam_code }}</td>
-                    <td>{{ exam.exam_name }}</td>
-                    <td>{{ exam.subject }}</td>
-                    <td>{{ exam.exam_date }}</td>
-                    <td>{{ exam.expire_date }}</td>
-                    <td>{{ 'Active' if exam.status else 'Inactive' }}</td>
-                    <td>
+                    <td>{{ evaluator.name }}</td>
+                    <td>{{ evaluator.email }}</td>
+                    <td>{{ evaluator.role }}</td>
+                    <td>{{ 'Active' if evaluator.active else 'Inactive' }}</td>
+                    <td>{{ evaluator.department }}</td>
+                    <td>{{ evaluator.designation }}</td>
+                    <td>{{ evaluator.phone_number }}</td>
+                    <td>{{ evaluator.created_date }}</td>
+                    <!-- <td>
                       <a href="#" class="btn btn-app">
                         <i class="fas fa-edit"></i> View
                       </a>
-                    </td>
+                    </td> -->
                   </tr>
                   {% endfor %}
                 </tbody>
@@ -92,8 +97,11 @@
                     <th>Email</th>
                     <th>Role</th>
                     <th>Status</th>
+                    <th>Department</th>
+                    <th>Designation</th>
+                    <th>Phone</th>
                     <th>Created Date</th>
-                    <th>Action</th>
+                    <!-- <th>Action</th> -->
                   </tr>
                 </tfoot>
               </table>
