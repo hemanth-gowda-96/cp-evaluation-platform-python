@@ -8,6 +8,9 @@ from config.config import config
 
 # routes 
 from blueprints.auth_routes import auth
+from blueprints.admin_routes.home import admin_home
+from blueprints.admin_routes.evaluators_management import evaluatores_managment
+from blueprints.admin_routes.subjects_management import subjects_management
 
 
 app = Flask(__name__)
@@ -37,8 +40,11 @@ db.init_app(app)
 migrate = Migrate(app, db)
 
 
-# register blueprints
+# register blueprints admin
 app.register_blueprint(auth.bp)
+app.register_blueprint(admin_home.bp)
+app.register_blueprint(evaluatores_managment.bp)
+app.register_blueprint(subjects_management.bp)
 
 with app.app_context():
     db.create_all()

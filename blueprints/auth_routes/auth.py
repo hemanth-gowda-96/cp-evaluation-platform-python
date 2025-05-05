@@ -60,3 +60,20 @@ def logout():
     session.clear()
 
     return redirect('/auth/login'), 301
+
+
+@bp.get('/landing')
+def landing():
+    ''' This function returns the landing page '''
+
+    if 'email' not in session:
+        flash("Please Login First", "info")
+        return redirect('/auth/login'), 301
+    
+    if session['role'] == 'ADMIN':
+        return redirect('/admin/home'), 301
+    
+    if session['role'] == 'EVALUATOR':
+        return redirect('/evaluator/home'), 301
+
+    return render_template('login/landing.html', )
