@@ -14,7 +14,8 @@ from blueprints.admin_routes.subjects_management import subjects_management
 
 # evaluator routes
 from blueprints.evaluator_routes.home import evaluator_home
-
+from blueprints.evaluator_routes.subjects_management import subjects_management as evaluator_subjects_management
+from blueprints.evaluator_routes.question_bank import question_bank
 
 app = Flask(__name__)
 
@@ -52,6 +53,8 @@ app.register_blueprint(subjects_management.bp)
 
 # register blueprints evaluator
 app.register_blueprint(evaluator_home.bp)
+app.register_blueprint(evaluator_subjects_management.bp)
+app.register_blueprint(question_bank.bp)
 
 with app.app_context():
     db.create_all()

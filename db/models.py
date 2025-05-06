@@ -31,3 +31,17 @@ class Subject(db.Model):
     description = db.Column(db.String(80), nullable=True)
     department = db.Column(db.String(80), nullable=True)
     semester = db.Column(db.String(80), nullable=True)
+
+class QuestionPaper(db.Model):
+    __tablename__ = 'question_papers'
+
+    paper_id = db.Column(db.String(255), primary_key=True)
+    title = db.Column(db.String(255), nullable=False)
+    description = db.Column(db.String(255), nullable=True)
+    subject_id = db.Column(db.String(255), nullable=False)  # Should reference Subject table
+    exam_date = db.Column(db.Date, nullable=False)
+    semester = db.Column(db.String(255), nullable=False)
+    file_data = db.Column(db.LargeBinary, nullable=True)  # Stores the actual file as BLOB
+    upload_date = db.Column(db.DateTime, server_default=db.func.now())
+    duration_minutes = db.Column(db.String(255))
+    max_marks = db.Column(db.String(255))
