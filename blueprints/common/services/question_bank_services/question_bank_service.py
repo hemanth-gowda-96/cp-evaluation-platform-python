@@ -63,4 +63,52 @@ def search_question_bank_service():
 
     
     
+def get_question_bank_service(paper_id: str):
+    ''' This function returns the question bank '''
     
+    try:
+        question_bank = db.session.execute(
+            db.select(QuestionPaper).where(QuestionPaper.paper_id == paper_id)).scalars().one()
+    except Exception as e:
+        return {
+            'error': str(e),
+            'message': 'An error occurred while searching question banks',
+            'data': None
+        }
+
+    return {
+        'error': None,
+        'message': 'search successful',
+        'data': question_bank
+    }
+
+def update_status_question_bank_service(paper_id: str, status: str):
+    ''' This function updates the status of the question bank '''
+    
+    try:
+        question_bank = db.session.execute(
+            db.select(QuestionPaper).where(QuestionPaper.paper_id == paper_id)).scalars().one()
+    except Exception as e:
+        return {
+            'error': str(e),
+            'message': 'An error occurred while searching question banks',
+            'data': None
+        }
+
+    question_bank.status = status
+
+    try:
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        return {
+            'error': str(e),
+            'message': 'An error occurred while updating question bank',
+            'data': None
+        }
+
+    return {
+        'error': None,
+        'message': 'Question bank updated successfully',
+        'data': question_bank
+    }

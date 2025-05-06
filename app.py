@@ -11,6 +11,7 @@ from blueprints.auth_routes import auth
 from blueprints.admin_routes.home import admin_home
 from blueprints.admin_routes.evaluators_management import evaluatores_managment
 from blueprints.admin_routes.subjects_management import subjects_management
+from blueprints.admin_routes.questions_management import questions_managment 
 
 # evaluator routes
 from blueprints.evaluator_routes.home import evaluator_home
@@ -50,6 +51,7 @@ app.register_blueprint(auth.bp)
 app.register_blueprint(admin_home.bp)
 app.register_blueprint(evaluatores_managment.bp)
 app.register_blueprint(subjects_management.bp)
+app.register_blueprint(questions_managment.bp)
 
 # register blueprints evaluator
 app.register_blueprint(evaluator_home.bp)

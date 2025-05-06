@@ -6,8 +6,8 @@ from blueprints.evaluator_routes.subjects_management.services.subjects_services 
 
 from blueprints.common.services.question_bank_services import question_bank_service
 
-bp = Blueprint('evaluator_question_bank', __name__,
-               url_prefix='/evaluator/question-bank')
+bp = Blueprint('admin_question_bank', __name__,
+               url_prefix='/admin/question-bank')
 
 
 # search question bank
@@ -19,7 +19,7 @@ def evaluators_management():
 
     if 'error' in response and response['error'] is not None:
         flash(response['message'], 'error')
-        return render_template('evaluator/question_bank/search.html')
+        return render_template('admin/question_bank/search.html')
     
     question_banks = response['data']
 
@@ -38,7 +38,7 @@ def evaluators_management():
 
     flash(response['message'], 'success')
 
-    return render_template('evaluator/question_bank/search.html', question_banks=question_banks)
+    return render_template('admin/question_bank/search.html', question_banks=question_banks)
 
 @bp.get('/create')
 def create_evaluator_get():
@@ -50,7 +50,7 @@ def create_evaluator_get():
 
     if 'error' in subjects and subjects['error'] is not None:
         flash(subjects['message'], 'error')
-        return render_template('evaluator/question_bank/create.html')
+        return render_template('admin/question_bank/create.html')
     
     subjects = subjects['data']
 
@@ -60,7 +60,7 @@ def create_evaluator_get():
         'code': x.code
     }, subjects))
 
-    return render_template('evaluator/question_bank/create.html', subjects=subjects)
+    return render_template('admin/question_bank/create.html', subjects=subjects)
 
 @bp.post('/create')
 def create_evaluator_post():
@@ -79,16 +79,16 @@ def create_evaluator_post():
     # check if file exists
     if file is None:
         flash("File is required", 'error')
-        return render_template('evaluator/question_bank/create.html')
+        return render_template('admin/question_bank/create.html')
     
     ## file is only pdf 
     if file.filename == '':
         flash("File is required", 'error')
-        return render_template('evaluator/question_bank/create.html')
+        return render_template('admin/question_bank/create.html')
     
     if not file.filename.endswith('.pdf'):
         flash("File must be a pdf", 'error')
-        return render_template('evaluator/question_bank/create.html')
+        return render_template('admin/question_bank/create.html')
     
     file_name = file.filename
     file_data = file.read()
@@ -99,7 +99,7 @@ def create_evaluator_post():
             exam_date, '%d/%m/%Y').date()
     except ValueError:
         flash("Invalid date format", 'error')
-        return render_template('evaluator/question_bank/create.html')
+        return render_template('admin/question_bank/create.html')
     
     # create dict for all required fields
     required_fields = {
@@ -120,13 +120,41 @@ def create_evaluator_post():
         required_fields)
     if 'error' in response and response['error'] is not None:
         flash(response['message'], 'error')
-        return render_template('evaluator/question_bank/create.html')
+        return render_template('admin/question_bank/create.html')
     
     # check if response is success
 
     flash(response['message'], 'success')
     
-    return redirect('/evaluator/question-bank/search')
+    return redirect('/admin/question-bank/search')
+
+
+@bp.get('/approve/<paper_id>')
+def approve_evaluator_get(paper_id):
+    ''' This function approves the question bank paper '''
+
+    result = question_bank_service.update_status_question_bank_service(paper_id, 'APPROVED')
+    if 'error' in result and result['error'] is not None:
+        flash(result['message'], 'error')
+        return render_template('admin/question_bank/view.html')
+
+    return redirect('/admin/question-bank/view/' + paper_id)
+
+
+@bp.get('/reject/<paper_id>')
+def reject_evaluator_get(paper_id):
+    ''' This function rejects the question bank paper '''
+
+    result = question_bank_service.update_status_question_bank_service(paper_id, 'REJECTED')
+
+    if 'error' in result and result['error'] is not None:
+        flash(result['message'], 'error')
+        return render_template('admin/question_bank/view.html')
+
+    return redirect('/admin/question-bank/view/' + paper_id)
+
+
+
 
 @bp.get('/view/<paper_id>')
 def update_evaluator_get(paper_id):
@@ -136,7 +164,7 @@ def update_evaluator_get(paper_id):
 
     if 'error' in result and result['error'] is not None:
         flash(result['message'], 'error')
-        return render_template('evaluator/question_bank/view.html')
+        return render_template('admin/question_bank/view.html')
     
     question_bank = result['data']
 
@@ -156,7 +184,7 @@ def update_evaluator_get(paper_id):
         'upload_date': question_bank.upload_date,
     }
 
-    return render_template('evaluator/question_bank/view.html', question_bank=question_bank)
+    return render_template('admin/question_bank/view.html', question_bank=question_bank)
 
 @bp.get('/download/<paper_id>')
 def download_evaluator_get(paper_id):
@@ -166,7 +194,7 @@ def download_evaluator_get(paper_id):
 
     if 'error' in result and result['error'] is not None:
         flash(result['message'], 'error')
-        return render_template('evaluator/question_bank/view.html')
+        return render_template('admin/question_bank/view.html')
     
     question_bank = result['data']
 
@@ -187,7 +215,7 @@ def show_evaluator_get(paper_id):
 
     if 'error' in result and result['error'] is not None:
         flash(result['message'], 'error')
-        return render_template('evaluator/question_bank/view.html')
+        return render_template('admin/question_bank/view.html')
     
     question_bank = result['data']
 

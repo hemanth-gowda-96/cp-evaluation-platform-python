@@ -43,11 +43,11 @@ def login_post():
 
     if role == 'ADMIN':
         flash("Welcome Admin " + user_data.name, "success")
-        return redirect('/admin/home'), 301
+        return redirect('/admin/evaluators-management/search'), 301
 
     if role == 'EVALUATOR':
         flash("Welcome Evaluator " + user_data.name, "success")
-        return redirect('/evaluator/home'), 301
+        return redirect('/evaluator/question-bank/search'), 301
 
     flash("Invalid Credentials", "error")
     return render_template('login/login.html', ), 400
@@ -71,9 +71,9 @@ def landing():
         return redirect('/auth/login'), 301
     
     if session['role'] == 'ADMIN':
-        return redirect('/admin/home'), 301
+        return redirect('/admin/evaluators-management/search'), 301
     
     if session['role'] == 'EVALUATOR':
-        return redirect('/evaluator/home'), 301
+        return redirect('/evaluator/question-bank/search'), 301
 
     return render_template('login/landing.html', )

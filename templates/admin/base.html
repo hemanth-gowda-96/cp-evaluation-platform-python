@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>AdminLTE 3 | Starter</title>
+    <title>QP Evaluation</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link
@@ -63,24 +63,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
             class="brand-image img-circle elevation-3"
             style="opacity: 0.8"
           />
-          <span class="brand-text font-weight-light">AdminLTE 3</span>
+          <span class="brand-text font-weight-light">QP Evaluation</span>
         </a>
 
         <!-- Sidebar -->
         <div class="sidebar">
           <!-- Sidebar user panel (optional) -->
-          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-              <img
-                src="{{ url_for('static', filename='./dist/img/user2-160x160.jpg') }}"
-                class="img-circle elevation-2"
-                alt="User Image"
-              />
-            </div>
-            <div class="info">
-              <a href="#" class="d-block">Alexander Pierce</a>
-            </div>
-          </div>
 
           <!-- Sidebar Menu -->
           <nav class="mt-2">
@@ -92,15 +80,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
             >
               <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-              <li class="nav-item">
-                <a href="/admin/home" class="nav-link active">
+              <!-- <li class="nav-item">
+                <a href="/admin/home" class="nav-link">
                   <i class="nav-icon fas fa-home"></i>
-                  <p>
-                    Home
-                    <!-- <span class="right badge badge-danger">New</span> -->
-                  </p>
+                  <p>Home</p>
                 </a>
-              </li>
+              </li> -->
               <!-- put line -->
 
               <li class="nav-item">
@@ -118,6 +103,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <i class="nav-icon fas fa-book"></i>
                   <p>
                     Subjects
+                    <!-- <span class="right badge badge-danger">New</span> -->
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/admin/question-bank/search" class="nav-link">
+                  <i class="nav-icon fas fa-book"></i>
+                  <p>
+                    Question Banks
                     <!-- <span class="right badge badge-danger">New</span> -->
                   </p>
                 </a>
@@ -155,12 +149,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Main Footer -->
       <footer class="main-footer">
         <!-- To the right -->
-        <div class="float-right d-none d-sm-inline">Anything you want</div>
+        <!-- <div class="float-right d-none d-sm-inline">Anything you want</div> -->
         <!-- Default to the left -->
-        <strong
+        <!-- <strong
           >Copyright &copy; 2014-2021
           <a href="https://adminlte.io">AdminLTE.io</a>.</strong
-        >
+        > -->
         All rights reserved.
       </footer>
     </div>

@@ -1,4 +1,4 @@
-{% extends 'evaluator/base.html' %}
+{% extends 'admin/base.html' %}
 
 <!-- This block is used to replace the content block in the base.html file -->
 {% block styles %}
@@ -52,9 +52,9 @@
               <!-- <h3 class="card-title">
                 DataTable with minimal features & hover style
               </h3> -->
-              <a class="btn btn-app" href="/evaluator/question-bank/create">
+              <!-- <a class="btn btn-app" href="/evaluator/question-bank/create">
                 <i class="fas fa-user-plus"></i> Add
-              </a>
+              </a> -->
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -82,7 +82,7 @@
 
                     <td>
                       <a
-                        href="/evaluator/question-bank/view/{{ question.paper_id }}"
+                        href="/admin/question-bank/view/{{ question.paper_id }}"
                       >
                         <i class="fas fa-edit"></i> View
                       </a>

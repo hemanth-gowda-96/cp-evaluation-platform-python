@@ -30,3 +30,5 @@ def insert_to_db(data):
         'message': 'inserted data to db',
         'data': data
     }
+
+
