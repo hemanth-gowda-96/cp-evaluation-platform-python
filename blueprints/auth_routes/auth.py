@@ -43,7 +43,7 @@ def login_post():
 
     if role == 'ADMIN':
         flash("Welcome Admin " + user_data.name, "success")
-        return redirect('/admin/evaluators-management/search'), 301
+        return redirect('/admin/home'), 301
 
     if role == 'EVALUATOR':
         flash("Welcome Evaluator " + user_data.name, "success")
