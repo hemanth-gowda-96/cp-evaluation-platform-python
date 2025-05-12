@@ -28,13 +28,74 @@ def get_dashboard_data():
         }
         
 
+    # get question paper status
+    question_paper_status = get_question_paper_status()
+    if 'error' in question_paper_status and question_paper_status['error'] is not None:
+        return {
+            'error': question_paper_status['error'],
+            'message': question_paper_status['message'],
+            'data': None
+        }
+    
+    print(question_paper_status)
+
     return {
         'error': None,
         'data': {
             'count_cards': count_cards['data'],
-            'total_questions_per_subject': total_questions_per_subject['data']
+            'total_questions_per_subject': total_questions_per_subject['data'],
+            'question_paper_status': question_paper_status['data']
+
         }
     }
+
+# get disctict status of question papers
+
+def get_question_paper_status():
+
+    ## get all question papers
+
+    all_question_papers = db.session.execute(
+        db.select(QuestionPaper)
+    ).scalars().all()
+
+    ## for each question paper get the status and count the questions
+
+    question_count_per_status = {}
+    for question_paper in all_question_papers:
+        status = question_paper.status
+        if status not in question_count_per_status:
+            question_count_per_status[status] = 0
+        question_count_per_status[status] += 1
+
+    keys = list(question_count_per_status.keys())
+    keys.append('others')
+    values = list(question_count_per_status.values())
+    values.append(0)
+
+    length_keys = len(keys)
+
+    # generate random hex color for each subject
+    colors = ['#' + ''.join([hex(i)[2:] for i in [random.randint(0, 255) for _ in range(3)]]) for _ in range(length_keys)]
+
+
+    final_response = {
+        'labels': keys,
+        'datasets': [{
+            'label': 'Question Paper Status',
+            'data': values,
+            'backgroundColor': colors,
+        }]
+    }
+
+
+    return {
+        'error': None,
+        'message': 'Total questions per subject fetched successfully',
+        'data': final_response
+
+    }
+
 
 def get_total_questions_per_subject():
 

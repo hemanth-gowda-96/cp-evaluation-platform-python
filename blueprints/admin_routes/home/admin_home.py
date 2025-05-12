@@ -23,11 +23,9 @@ def home():
     data = result['data']
     count_cards = data['count_cards']
     total_questions_per_subject = data['total_questions_per_subject']
-
-    print(count_cards)
-    print(total_questions_per_subject)
     
 
     return render_template('admin/home.html', count_cards=count_cards
-                            , total_questions_per_subject=total_questions_per_subject
+                            , total_questions_per_subject=total_questions_per_subject,
+                            question_paper_status=data['question_paper_status']
     )
