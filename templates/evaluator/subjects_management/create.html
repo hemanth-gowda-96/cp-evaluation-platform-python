@@ -1,0 +1,180 @@
+{% extends 'evaluator/base.html' %}
+
+<!-- This block is used to replace the content block in the base.html file -->
+{% block styles %}
+<!-- daterange picker -->
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='plugins/daterangepicker/daterangepicker.css') }}"
+/>
+<!-- Tempusdominus Bootstrap 4 -->
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}"
+/>
+{% endblock %}
+
+<!-- This block is used to replace the content block in the base.html file -->
+{% block content %}
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Add New Subject</h1>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">New Subject</li>
+          </ol>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Add New Subject</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <form method="post">
+                <div class="row">
+                  <div class="col-4">
+                    <!-- text input -->
+                    <div class="form-group">
+                      <label>Name</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter ..."
+                        id="name"
+                        name="name"
+                        value="{{ request.form.get('name', '') }}"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <!-- text input -->
+                    <div class="form-group">
+                      <label>Code</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter ..."
+                        id="code"
+                        name="code"
+                        value="{{ request.form.get('code', '') }}"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <!-- text input -->
+                    <div class="form-group">
+                      <label>Description</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter ..."
+                        id="description"
+                        name="description"
+                        value="{{ request.form.get('description', '') }}"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <!-- text input -->
+                    <div class="form-group">
+                      <label>Department</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter ..."
+                        id="department"
+                        name="department"
+                        value="{{ request.form.get('department', '') }}"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <!-- text input -->
+                    <div class="form-group">
+                      <label>Semester</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter ..."
+                        id="semester"
+                        name="semester"
+                        maxlength="1"
+                        minlength="1"
+                        pattern="\d{1}"
+                        value="{{ request.form.get('description', '') }}"
+                        title="Please enter a valid semester in digits"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6"></div>
+                  <div class="col-sm-4"></div>
+                  <div class="col-sm-4">
+                    <button type="submit" class="btn btn-primary btn-block">
+                      Submit
+                    </button>
+                  </div>
+                  <div class="col-sm-4"></div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <!-- /.content -->
+</div>
+{% endblock %}
+
+<!-- This block is used to replace the content block in the base.html file -->
+{% block scripts %}
+<!-- InputMask -->
+<script src="{{ url_for('static', filename='plugins/moment/moment.min.js') }}"></script>
+<!-- date-range-picker -->
+<script src="{{ url_for('static', filename='plugins/daterangepicker/daterangepicker.js') }}"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="{{ url_for('static', filename='plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+<script>
+  $(document).ready(function () {
+    // Ensure the element exists before initializing
+    if ($("#reservationdate").length) {
+      $("#reservationdate").datetimepicker({
+        format: "L",
+      });
+    }
+    if ($("#reservationdate1").length) {
+      $("#reservationdate1").datetimepicker({
+        format: "L",
+      });
+    }
+  });
+</script>
+{% endblock %}

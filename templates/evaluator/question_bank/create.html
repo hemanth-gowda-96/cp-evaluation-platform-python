@@ -1,0 +1,269 @@
+{% extends 'evaluator/base.html' %}
+
+<!-- This block is used to replace the content block in the base.html file -->
+{% block styles %}
+<!-- daterange picker -->
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='plugins/daterangepicker/daterangepicker.css') }}"
+/>
+<!-- Tempusdominus Bootstrap 4 -->
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}"
+/>
+{% endblock %}
+
+<!-- This block is used to replace the content block in the base.html file -->
+{% block content %}
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Add New Question</h1>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">New Question</li>
+          </ol>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Add New Question</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <form method="post" enctype="multipart/form-data">
+                <div class="row">
+                  <div class="col-4">
+                    <!-- text input -->
+                    <div class="form-group">
+                      <label>Question Paper Code</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter ..."
+                        id="code"
+                        name="code"
+                        value="{{ request.form.get('code', '') }}"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <!-- text input -->
+                    <div class="form-group">
+                      <label>Title</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter ..."
+                        id="title"
+                        name="title"
+                        value="{{ request.form.get('title', 'sample title') }}"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <!-- text input -->
+                    <div class="form-group">
+                      <label>Description</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter ..."
+                        id="description"
+                        name="description"
+                        value="{{ request.form.get('description', 'sample description') }}"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label>Subject Code</label>
+                      <select
+                        class="form-control select2"
+                        style="width: 100%"
+                        id="subject_code"
+                        name="subject_code"
+                      >
+                        {% for subject in subjects %}
+                        <option value="{{ subject.code }}">
+                          {{ subject.code }}
+                        </option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <!-- text input -->
+                    <div class="form-group">
+                      <label>Semester</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter ..."
+                        id="semester"
+                        name="semester"
+                        maxlength="1"
+                        minlength="1"
+                        pattern="\d{1}"
+                        value="{{ request.form.get('description', '3') }}"
+                        title="Please enter a valid semester in digits"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <!-- text input -->
+                    <div class="form-group">
+                      <label>Duration (Min)</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter ..."
+                        id="duration"
+                        name="duration"
+                        maxlength="99"
+                        minlength="1"
+                        pattern="\d{2}"
+                        value="{{ request.form.get('duration', '60') }}"
+                        title="Please enter a valid semester in digits"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <!-- text input -->
+                    <div class="form-group">
+                      <label>Max Marks </label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter ..."
+                        id="max_marks"
+                        name="max_marks"
+                        maxlength="200"
+                        minlength="1"
+                        pattern="\d{3}"
+                        value="{{ request.form.get('max_marks', '125') }}"
+                        title="Please enter a valid semester in digits"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <!-- Date -->
+                    <div class="form-group">
+                      <label>Date:</label>
+                      <div
+                        class="input-group date"
+                        id="reservationdate"
+                        data-target-input="nearest"
+                      >
+                        <input
+                          type="text"
+                          class="form-control datetimepicker-input"
+                          data-target="#reservationdate"
+                          id="exam_date"
+                          name="exam_date"
+                          placeholder="Select ..."
+                        />
+                        <div
+                          class="input-group-append"
+                          data-target="#reservationdate"
+                          data-toggle="datetimepicker"
+                        >
+                          <div class="input-group-text">
+                            <i class="fa fa-calendar"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                    <div class="col-4"></div>
+                    <div class="form-group">
+                      <label for="exampleInputFile">File input</label>
+                      <div class="input-group">
+                      <div class="custom-file">
+                          <input
+                            type="file"
+                            class="custom-file-input"
+                            id="file"
+                            name="file"
+                          />
+                          <label
+                            class="custom-file-label"
+                            for="exampleInputFile"
+                            >Choose file</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6"></div>
+                  <div class="col-sm-4"></div>
+                  <div class="col-sm-4">
+                    <button type="submit" class="btn btn-primary btn-block">
+                      Submit
+                    </button>
+                  </div>
+                  <div class="col-sm-4"></div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <!-- /.content -->
+</div>
+{% endblock %}
+
+<!-- This block is used to replace the content block in the base.html file -->
+{% block scripts %}
+<!-- InputMask -->
+<script src="{{ url_for('static', filename='plugins/moment/moment.min.js') }}"></script>
+<!-- bs-custom-file-input -->
+<script src="{{ url_for('static', filename='plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
+<!-- date-range-picker -->
+<script src="{{ url_for('static', filename='plugins/daterangepicker/daterangepicker.js') }}"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="{{ url_for('static', filename='plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+<script>
+  $(document).ready(function () {
+    // Ensure the element exists before initializing
+    if ($("#reservationdate").length) {
+      $("#reservationdate").datetimepicker({
+        format: "DD/MM/YYYY",
+      });
+    }
+  });
+
+  $(function () {
+  bsCustomFileInput.init();
+});
+</script>
+{% endblock %}
