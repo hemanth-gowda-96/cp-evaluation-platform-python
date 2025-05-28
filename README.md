@@ -1,4 +1,4 @@
-# Project Portal in python (collage Project)
+# Project Portal in python (Pain Collage Project)
 
 ## set up virtual environment
 
