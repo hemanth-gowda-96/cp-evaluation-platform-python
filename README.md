@@ -102,8 +102,11 @@ Open your browser and navigate to: [http://localhost:5000](http://localhost:5000
 ## 👥 Default Login Credentials
 
 The system creates a default admin account on first run:
-- **Email**: Check the `db/default_admin.py` file for credentials
+- **Email**: `admin@mail.com`
+- **Password**: `admin`
 - **Role**: Admin
+
+> ⚠️ **Security Note**: Please change these default credentials immediately after your first login for security purposes.
 
 ## 🗂️ Database Models
 
