@@ -22,3 +22,7 @@ wheels/
 .installed.cfg
 *.egg
 MANIFEST
+
+# Database and migrations
+datastore/
+migrations/
